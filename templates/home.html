@@ -1,97 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ATS Resume Matcher</title>
 
+    <!-- Google Fonts for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
     <style>
-        * {
+        /* ---------- Reset & Base ---------- */
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
-            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            background: #f6f7fb;
-            height: 100vh;
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            background: linear-gradient(145deg, #eef2f7 0%, #f8faff 100%);
+            padding: 20px;
+            margin: 0;
         }
 
+        /* ---------- Main Card ---------- */
         .container {
             background: #ffffff;
-            width: 420px;
-            padding: 32px;
-            border-radius: 14px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 480px;
+            padding: 40px 36px;
+            border-radius: 24px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.06),
+                0 8px 24px rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle accent line at top */
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #a78bfa);
+            border-radius: 24px 24px 0 0;
+        }
+
+        /* ---------- Header ---------- */
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .header-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
+            border-radius: 16px;
+            margin-bottom: 14px;
+            color: #4f46e5;
+            font-size: 26px;
+            transition: transform 0.2s ease;
+        }
+
+        .container:hover .header-icon {
+            transform: scale(1.04) rotate(-2deg);
         }
 
         h1 {
-            margin: 0;
-            margin-bottom: 8px;
-            font-size: 22px;
-            font-weight: 600;
-            color: #111827;
-            text-align: center;
-        }
-
-        p {
-            margin: 0 0 24px 0;
-            font-size: 14px;
-            color: #6b7280;
-            text-align: center;
-        }
-
-        label {
-            font-size: 13px;
-            font-weight: 600;
-            color: #374151;
-            display: block;
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.3px;
             margin-bottom: 6px;
         }
 
-        input[type="file"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px dashed #d1d5db;
-            border-radius: 10px;
-            background: #fafafa;
+        .subtitle {
             font-size: 14px;
-            margin-bottom: 20px;
-            cursor: pointer;
+            color: #6b7280;
+            font-weight: 400;
+            letter-spacing: 0.2px;
         }
 
-        input[type="file"]:hover {
-            border-color: #6366f1;
-            background: #f5f7ff;
+        /* ---------- Form ---------- */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
 
-        input[type="submit"] {
-            width: 100%;
-            padding: 14px;
-            border-radius: 10px;
-            border: none;
-            background: #6366f1;
-            color: #ffffff;
-            font-size: 15px;
+        /* --- File upload groups --- */
+        .file-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .file-group label {
+            font-size: 13px;
             font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s, transform 0.1s;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        input[type="submit"]:hover {
-            background: #4f46e5;
+        .file-group label i {
+            color: #6366f1;
+            font-size: 14px;
+            width: 18px;
+            text-align: center;
+        }
+
+        .file-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .file-wrapper input[type="file"] {
+            width: 100%;
+            padding: 16px 18px;
+            border: 2px dashed #d1d5db;
+            border-radius: 14px;
+            background: #fafcff;
+            font-size: 14px;
+            color: #1e293b;
+            cursor: pointer;
+            transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+            outline: none;
+            display: block;
+        }
+
+        .file-wrapper input[type="file"]:hover {
+            border-color: #818cf8;
+            background: #f5f7ff;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.06);
+        }
+
+        .file-wrapper input[type="file"]:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+        }
+
+        /* Custom file input text style (webkit only) */
+        .file-wrapper input[type="file"]::file-selector-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            margin-right: 14px;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
+
+        .file-wrapper input[type="file"]::file-selector-button:hover {
+            background: #e0e7ff;
             transform: translateY(-1px);
         }
 
+        /* ---------- Submit Button ---------- */
+        .submit-btn {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 14px;
+            border: none;
+            background: linear-gradient(135deg, #6366f1, #7c3aed);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.25s ease, background 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 6px;
+            letter-spacing: 0.2px;
+            box-shadow: 0 4px 14px rgba(99, 102, 241, 0.30);
+        }
+
+        .submit-btn i {
+            font-size: 18px;
+            transition: transform 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #4f46e5, #6d28d9);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.40);
+        }
+
+        .submit-btn:hover i {
+            transform: translateX(4px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0px);
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.30);
+        }
+
+        /* ---------- Result ---------- */
         .result {
-            margin-top: 20px;
+            margin-top: 22px;
+            padding: 16px 18px;
+            border-radius: 14px;
             text-align: center;
             font-size: 15px;
             font-weight: 600;
             color: #16a34a;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            transition: all 0.3s ease;
+            min-height: 54px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .result:empty {
+            display: none;
+        }
+
+        .result i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        /* result variants (handled by flask) */
+        .result.success {
+            color: #15803d;
+            background: #f0fdf4;
+            border-color: #86efac;
+        }
+
+        .result.error {
+            color: #dc2626;
+            background: #fef2f2;
+            border-color: #fca5a5;
+        }
+
+        .result.info {
+            color: #2563eb;
+            background: #eff6ff;
+            border-color: #93c5fd;
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 500px) {
+            .container {
+                padding: 28px 20px;
+                border-radius: 20px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .header-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+            }
+
+            .file-wrapper input[type="file"] {
+                padding: 14px 14px;
+                font-size: 13px;
+            }
+
+            .submit-btn {
+                font-size: 15px;
+                padding: 14px 18px;
+            }
+
+            .result {
+                font-size: 14px;
+                padding: 14px 14px;
+                min-height: 48px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .container {
+                padding: 20px 14px;
+            }
+
+            .file-wrapper input[type="file"] {
+                padding: 12px 10px;
+                font-size: 12px;
+            }
+
+            .file-wrapper input[type="file"]::file-selector-button {
+                padding: 6px 12px;
+                font-size: 12px;
+                margin-right: 8px;
+            }
+        }
+
+        /* ---------- Utility: subtle animation on load ---------- */
+        .container {
+            animation: fadeUp 0.5s ease both;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
     </style>
 </head>
@@ -99,24 +338,52 @@
 <body>
 
     <div class="container">
-        <h1>ATS Resume Matcher</h1>
-        <p>Upload resume and job description to check compatibility</p>
 
+        <!-- Header with icon -->
+        <div class="header">
+            <div class="header-icon">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <h1>ATS Resume Matcher</h1>
+            <p class="subtitle">Upload your resume &amp; job description to check compatibility</p>
+        </div>
+
+        <!-- Form -->
         <form method="POST" enctype="multipart/form-data">
-            
-            <label>Resume (PDF)</label>
-            <input type="file" name="resume_pdf" accept=".pdf" required>
 
-            <label>Job Description (PDF)</label>
-            <input type="file" name="jd_pdf" accept=".pdf" required>
+            <!-- Resume -->
+            <div class="file-group">
+                <label for="resumeInput">
+                    <i class="fas fa-user"></i> Resume (PDF)
+                </label>
+                <div class="file-wrapper">
+                    <input type="file" id="resumeInput" name="resume_pdf" accept=".pdf" required />
+                </div>
+            </div>
 
-            <input type="submit" value="Check Match">
+            <!-- Job Description -->
+            <div class="file-group">
+                <label for="jdInput">
+                    <i class="fas fa-briefcase"></i> Job Description (PDF)
+                </label>
+                <div class="file-wrapper">
+                    <input type="file" id="jdInput" name="jd_pdf" accept=".pdf" required />
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="submit-btn">
+                <span>Check Match</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
 
         </form>
 
+        <!-- Result message -->
         <div class="result">
             {{ msg }}
         </div>
+
     </div>
 
 </body>
