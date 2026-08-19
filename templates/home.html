@@ -3,44 +3,48 @@
 
 <head>
 
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
 
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
-    />
+    >
 
     <title>ATS Resume Matcher</title>
 
 
     <!-- Google Fonts -->
+
     <link
         rel="preconnect"
         href="https://fonts.googleapis.com"
-    />
+    >
 
     <link
         rel="preconnect"
         href="https://fonts.gstatic.com"
         crossorigin
-    />
+    >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
         rel="stylesheet"
-    />
+    >
 
 
     <!-- Font Awesome -->
+
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
+    >
 
 
     <style>
 
-        /* ---------- Reset & Base ---------- */
+        /* =========================================
+           RESET
+        ========================================= */
 
         *,
         *::before,
@@ -54,6 +58,10 @@
 
         }
 
+
+        /* =========================================
+           BODY
+        ========================================= */
 
         body {
 
@@ -80,35 +88,32 @@
 
             padding: 20px;
 
-            margin: 0;
-
         }
 
 
-        /* ---------- Main Card ---------- */
+        /* =========================================
+           MAIN CONTAINER
+        ========================================= */
 
         .container {
-
-            background: #ffffff;
 
             width: 100%;
 
             max-width: 480px;
 
+            background: #ffffff;
+
             padding: 40px 36px;
 
             border-radius: 24px;
 
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.06),
-                0 8px 24px rgba(0, 0, 0, 0.04);
-
-            transition:
-                box-shadow 0.3s ease;
-
             position: relative;
 
             overflow: hidden;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.06),
+                0 8px 24px rgba(0, 0, 0, 0.04);
 
             animation:
                 fadeUp 0.5s ease both;
@@ -116,7 +121,7 @@
         }
 
 
-        /* Subtle accent line */
+        /* Top accent */
 
         .container::before {
 
@@ -140,13 +145,12 @@
                     #a78bfa
                 );
 
-            border-radius:
-                24px 24px 0 0;
-
         }
 
 
-        /* ---------- Header ---------- */
+        /* =========================================
+           HEADER
+        ========================================= */
 
         .header {
 
@@ -159,15 +163,15 @@
 
         .header-icon {
 
+            width: 56px;
+
+            height: 56px;
+
             display: inline-flex;
 
             align-items: center;
 
             justify-content: center;
-
-            width: 56px;
-
-            height: 56px;
 
             background:
                 linear-gradient(
@@ -176,25 +180,13 @@
                     #e0e7ff
                 );
 
+            color: #4f46e5;
+
             border-radius: 16px;
 
             margin-bottom: 14px;
 
-            color: #4f46e5;
-
             font-size: 26px;
-
-            transition:
-                transform 0.2s ease;
-
-        }
-
-
-        .container:hover .header-icon {
-
-            transform:
-                scale(1.04)
-                rotate(-2deg);
 
         }
 
@@ -207,8 +199,6 @@
 
             color: #0f172a;
 
-            letter-spacing: -0.3px;
-
             margin-bottom: 6px;
 
         }
@@ -220,14 +210,14 @@
 
             color: #6b7280;
 
-            font-weight: 400;
-
-            letter-spacing: 0.2px;
+            line-height: 1.5;
 
         }
 
 
-        /* ---------- Form ---------- */
+        /* =========================================
+           FORM
+        ========================================= */
 
         form {
 
@@ -240,7 +230,9 @@
         }
 
 
-        /* ---------- File Upload ---------- */
+        /* =========================================
+           FILE GROUP
+        ========================================= */
 
         .file-group {
 
@@ -248,7 +240,7 @@
 
             flex-direction: column;
 
-            gap: 4px;
+            gap: 6px;
 
         }
 
@@ -274,8 +266,6 @@
 
             color: #6366f1;
 
-            font-size: 14px;
-
             width: 18px;
 
             text-align: center;
@@ -283,9 +273,11 @@
         }
 
 
-        .file-wrapper {
+        /* =========================================
+           FILE INPUT
+        ========================================= */
 
-            position: relative;
+        .file-wrapper {
 
             width: 100%;
 
@@ -298,8 +290,7 @@
 
             padding: 16px 18px;
 
-            border:
-                2px dashed #d1d5db;
+            border: 2px dashed #d1d5db;
 
             border-radius: 14px;
 
@@ -311,14 +302,12 @@
 
             cursor: pointer;
 
+            outline: none;
+
             transition:
                 border-color 0.25s ease,
                 background 0.25s ease,
                 box-shadow 0.25s ease;
-
-            outline: none;
-
-            display: block;
 
         }
 
@@ -368,25 +357,12 @@
 
             margin-right: 14px;
 
-            transition:
-                background 0.2s ease,
-                transform 0.1s ease;
-
         }
 
 
-        .file-wrapper
-        input[type="file"]::file-selector-button:hover {
-
-            background: #e0e7ff;
-
-            transform:
-                translateY(-1px);
-
-        }
-
-
-        /* ---------- Submit Button ---------- */
+        /* =========================================
+           SUBMIT BUTTON
+        ========================================= */
 
         .submit-btn {
 
@@ -394,9 +370,9 @@
 
             padding: 16px 20px;
 
-            border-radius: 14px;
-
             border: none;
+
+            border-radius: 14px;
 
             background:
                 linear-gradient(
@@ -405,18 +381,13 @@
                     #7c3aed
                 );
 
-            color: #ffffff;
+            color: white;
 
             font-size: 16px;
 
             font-weight: 600;
 
             cursor: pointer;
-
-            transition:
-                transform 0.15s ease,
-                box-shadow 0.25s ease,
-                background 0.25s ease;
 
             display: flex;
 
@@ -428,11 +399,25 @@
 
             margin-top: 6px;
 
-            letter-spacing: 0.2px;
-
             box-shadow:
                 0 4px 14px
                 rgba(99, 102, 241, 0.30);
+
+            transition:
+                transform 0.15s ease,
+                box-shadow 0.25s ease;
+
+        }
+
+
+        .submit-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 24px
+                rgba(99, 102, 241, 0.40);
 
         }
 
@@ -447,25 +432,6 @@
         }
 
 
-        .submit-btn:hover {
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #4f46e5,
-                    #6d28d9
-                );
-
-            transform:
-                translateY(-2px);
-
-            box-shadow:
-                0 8px 24px
-                rgba(99, 102, 241, 0.40);
-
-        }
-
-
         .submit-btn:hover i {
 
             transform:
@@ -474,19 +440,9 @@
         }
 
 
-        .submit-btn:active {
-
-            transform:
-                translateY(0px);
-
-            box-shadow:
-                0 2px 8px
-                rgba(99, 102, 241, 0.30);
-
-        }
-
-
-        /* ---------- Result ---------- */
+        /* =========================================
+           RESULT BOX
+        ========================================= */
 
         .result {
 
@@ -498,31 +454,25 @@
 
             text-align: center;
 
-            transition:
-                all 0.3s ease;
-
         }
 
 
-        .result:empty {
-
-            display: none;
-
-        }
-
-
-        /* ---------- Result Icon ---------- */
+        /* =========================================
+           RESULT ICON
+        ========================================= */
 
         .result-icon {
 
-            font-size: 26px;
+            font-size: 28px;
 
             margin-bottom: 8px;
 
         }
 
 
-        /* ---------- Result Title ---------- */
+        /* =========================================
+           RESULT TITLE
+        ========================================= */
 
         .result-title {
 
@@ -530,16 +480,18 @@
 
             font-weight: 700;
 
-            margin-bottom: 6px;
+            margin-bottom: 8px;
 
         }
 
 
-        /* ---------- Score ---------- */
+        /* =========================================
+           SCORE
+        ========================================= */
 
         .score {
 
-            font-size: 30px;
+            font-size: 32px;
 
             font-weight: 700;
 
@@ -550,18 +502,26 @@
         }
 
 
+        /* =========================================
+           PERCENTAGE
+        ========================================= */
+
         .score-percentage {
 
             font-size: 13px;
 
-            font-weight: 500;
+            font-weight: 600;
 
             opacity: 0.75;
+
+            margin-bottom: 8px;
 
         }
 
 
-        /* ---------- Result Message ---------- */
+        /* =========================================
+           MESSAGE
+        ========================================= */
 
         .result-message {
 
@@ -569,12 +529,14 @@
 
             line-height: 1.5;
 
-            margin-top: 8px;
+            margin-top: 6px;
 
         }
 
 
-        /* ---------- Great Match ---------- */
+        /* =========================================
+           GREAT MATCH
+        ========================================= */
 
         .result.great {
 
@@ -588,14 +550,17 @@
         }
 
 
-        .result.great .result-icon {
+        .result.great
+        .result-icon {
 
             color: #16a34a;
 
         }
 
 
-        /* ---------- Moderate Match ---------- */
+        /* =========================================
+           MODERATE MATCH
+        ========================================= */
 
         .result.moderate {
 
@@ -609,14 +574,17 @@
         }
 
 
-        .result.moderate .result-icon {
+        .result.moderate
+        .result-icon {
 
             color: #d97706;
 
         }
 
 
-        /* ---------- Low Match ---------- */
+        /* =========================================
+           LOW MATCH
+        ========================================= */
 
         .result.low {
 
@@ -630,14 +598,17 @@
         }
 
 
-        .result.low .result-icon {
+        .result.low
+        .result-icon {
 
             color: #dc2626;
 
         }
 
 
-        /* ---------- Disclaimer ---------- */
+        /* =========================================
+           DISCLAIMER
+        ========================================= */
 
         .disclaimer {
 
@@ -654,7 +625,38 @@
         }
 
 
-        /* ---------- Responsive ---------- */
+        /* =========================================
+           ANIMATION
+        ========================================= */
+
+        @keyframes fadeUp {
+
+            0% {
+
+                opacity: 0;
+
+                transform:
+                    translateY(18px)
+                    scale(0.98);
+
+            }
+
+            100% {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    scale(1);
+
+            }
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
 
         @media (max-width: 500px) {
 
@@ -685,99 +687,14 @@
             }
 
 
-            .file-wrapper
-            input[type="file"] {
-
-                padding: 14px;
-
-                font-size: 13px;
-
-            }
-
-
-            .submit-btn {
-
-                font-size: 15px;
-
-                padding: 14px 18px;
-
-            }
-
-
-            .result {
-
-                padding: 18px 14px;
-
-            }
-
-
             .score {
 
-                font-size: 26px;
+                font-size: 28px;
 
             }
 
         }
 
-
-        @media (max-width: 380px) {
-
-            .container {
-
-                padding: 20px 14px;
-
-            }
-
-
-            .file-wrapper
-            input[type="file"] {
-
-                padding: 12px 10px;
-
-                font-size: 12px;
-
-            }
-
-
-            .file-wrapper
-            input[type="file"]::file-selector-button {
-
-                padding: 6px 12px;
-
-                font-size: 12px;
-
-                margin-right: 8px;
-
-            }
-
-        }
-
-
-        /* ---------- Animation ---------- */
-
-        @keyframes fadeUp {
-
-            0% {
-
-                opacity: 0;
-
-                transform:
-                    translateY(18px)
-                    scale(0.98);
-
-            }
-
-            100% {
-
-                opacity: 1;
-
-                transform:
-                    translateY(0)
-                    scale(1);
-
-            }
-
-        }
 
     </style>
 
@@ -790,7 +707,9 @@
     <div class="container">
 
 
-        <!-- Header -->
+        <!-- ======================================
+             HEADER
+        ======================================= -->
 
         <div class="header">
 
@@ -807,14 +726,18 @@
 
 
             <p class="subtitle">
+
                 Upload your resume &amp; job description
                 to check compatibility
+
             </p>
 
         </div>
 
 
-        <!-- Upload Form -->
+        <!-- ======================================
+             FORM
+        ======================================= -->
 
         <form
             method="POST"
@@ -843,7 +766,7 @@
                         name="resume_pdf"
                         accept=".pdf"
                         required
-                    />
+                    >
 
                 </div>
 
@@ -871,7 +794,7 @@
                         name="jd_pdf"
                         accept=".pdf"
                         required
-                    />
+                    >
 
                 </div>
 
@@ -897,14 +820,16 @@
         </form>
 
 
-        <!-- Result -->
+        <!-- ======================================
+             RESULT
+        ======================================= -->
 
         {% if score is not none %}
 
         <div class="result {{ status }}">
 
 
-            <!-- Icon -->
+            <!-- Result icon -->
 
             <div class="result-icon">
 
@@ -925,7 +850,7 @@
             </div>
 
 
-            <!-- Result Title -->
+            <!-- Result title -->
 
             <div class="result-title">
 
@@ -943,6 +868,8 @@
             </div>
 
 
+            <!-- Percentage -->
+
             <div class="score-percentage">
 
                 {{ percentage }}% Match
@@ -950,7 +877,7 @@
             </div>
 
 
-            <!-- Explanation -->
+            <!-- Message -->
 
             <div class="result-message">
 
