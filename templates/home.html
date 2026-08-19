@@ -2,909 +2,725 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ATS Resume Matcher</title>
 
-
-    <!-- Google Fonts -->
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
-
-
-    <!-- Font Awesome -->
 
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     >
 
-
     <style>
-
-        /* =========================================
-           RESET
-        ========================================= */
-
-        *,
-        *::before,
-        *::after {
-
+        * {
             box-sizing: border-box;
-
             margin: 0;
-
             padding: 0;
-
         }
-
-
-        /* =========================================
-           BODY
-        ========================================= */
 
         body {
-
-            font-family:
-                "Inter",
-                "Segoe UI",
-                Arial,
-                sans-serif;
-
+            font-family: "Inter", "Segoe UI", Arial, sans-serif;
             min-height: 100vh;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
             background:
-                linear-gradient(
-                    145deg,
-                    #eef2f7 0%,
-                    #f8faff 100%
-                );
-
-            padding: 20px;
-
+                radial-gradient(circle at top left, #eef2ff 0, transparent 35%),
+                linear-gradient(145deg, #eef2f7 0%, #f8faff 100%);
+            padding: 28px 16px;
+            color: #172033;
         }
-
-
-        /* =========================================
-           MAIN CONTAINER
-        ========================================= */
 
         .container {
-
             width: 100%;
-
-            max-width: 480px;
-
+            max-width: 820px;
+            margin: 0 auto;
             background: #ffffff;
-
-            padding: 40px 36px;
-
-            border-radius: 24px;
-
+            border-radius: 26px;
+            padding: 42px;
             position: relative;
-
             overflow: hidden;
-
             box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.06),
-                0 8px 24px rgba(0, 0, 0, 0.04);
-
-            animation:
-                fadeUp 0.5s ease both;
-
+                0 24px 70px rgba(15, 23, 42, 0.08),
+                0 8px 25px rgba(15, 23, 42, 0.04);
         }
-
-
-        /* Top accent */
 
         .container::before {
-
             content: "";
-
             position: absolute;
-
             top: 0;
-
             left: 0;
-
             right: 0;
-
-            height: 4px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #6366f1,
-                    #8b5cf6,
-                    #a78bfa
-                );
-
+            height: 5px;
+            background: linear-gradient(90deg, #6366f1, #7c3aed, #a78bfa);
         }
-
-
-        /* =========================================
-           HEADER
-        ========================================= */
 
         .header {
-
             text-align: center;
-
-            margin-bottom: 28px;
-
+            margin-bottom: 30px;
         }
-
 
         .header-icon {
-
-            width: 56px;
-
-            height: 56px;
-
+            width: 64px;
+            height: 64px;
             display: inline-flex;
-
             align-items: center;
-
             justify-content: center;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #eef2ff,
-                    #e0e7ff
-                );
-
+            background: linear-gradient(135deg, #eef2ff, #e0e7ff);
             color: #4f46e5;
-
-            border-radius: 16px;
-
-            margin-bottom: 14px;
-
-            font-size: 26px;
-
+            border-radius: 18px;
+            margin-bottom: 15px;
+            font-size: 28px;
         }
-
 
         h1 {
-
-            font-size: 24px;
-
-            font-weight: 700;
-
-            color: #0f172a;
-
-            margin-bottom: 6px;
-
+            font-size: 28px;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 7px;
         }
-
 
         .subtitle {
-
             font-size: 14px;
-
             color: #6b7280;
-
-            line-height: 1.5;
-
+            line-height: 1.6;
         }
-
-
-        /* =========================================
-           FORM
-        ========================================= */
 
         form {
-
-            display: flex;
-
-            flex-direction: column;
-
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 18px;
-
         }
-
-
-        /* =========================================
-           FILE GROUP
-        ========================================= */
 
         .file-group {
-
             display: flex;
-
             flex-direction: column;
-
-            gap: 6px;
-
+            gap: 8px;
         }
-
 
         .file-group label {
-
             font-size: 13px;
-
-            font-weight: 600;
-
+            font-weight: 700;
             color: #1e293b;
-
             display: flex;
-
             align-items: center;
-
             gap: 8px;
-
         }
-
 
         .file-group label i {
-
             color: #6366f1;
-
             width: 18px;
-
             text-align: center;
-
         }
-
-
-        /* =========================================
-           FILE INPUT
-        ========================================= */
-
-        .file-wrapper {
-
-            width: 100%;
-
-        }
-
 
         .file-wrapper input[type="file"] {
-
             width: 100%;
-
-            padding: 16px 18px;
-
+            padding: 14px;
             border: 2px dashed #d1d5db;
-
             border-radius: 14px;
-
             background: #fafcff;
-
-            font-size: 14px;
-
-            color: #1e293b;
-
+            font-size: 13px;
+            color: #475569;
             cursor: pointer;
-
-            outline: none;
-
-            transition:
-                border-color 0.25s ease,
-                background 0.25s ease,
-                box-shadow 0.25s ease;
-
         }
-
 
         .file-wrapper input[type="file"]:hover {
-
             border-color: #818cf8;
-
             background: #f5f7ff;
-
-            box-shadow:
-                0 0 0 4px
-                rgba(99, 102, 241, 0.06);
-
         }
 
-
-        .file-wrapper input[type="file"]:focus {
-
-            border-color: #6366f1;
-
-            box-shadow:
-                0 0 0 4px
-                rgba(99, 102, 241, 0.12);
-
-        }
-
-
-        .file-wrapper
-        input[type="file"]::file-selector-button {
-
-            padding: 8px 16px;
-
+        .file-wrapper input[type="file"]::file-selector-button {
+            padding: 9px 14px;
             border: none;
-
-            border-radius: 8px;
-
+            border-radius: 9px;
             background: #eef2ff;
-
             color: #4f46e5;
-
-            font-weight: 600;
-
-            font-size: 13px;
-
+            font-weight: 700;
+            font-size: 12px;
             cursor: pointer;
-
-            margin-right: 14px;
-
+            margin-right: 12px;
         }
-
-
-        /* =========================================
-           SUBMIT BUTTON
-        ========================================= */
 
         .submit-btn {
-
+            grid-column: 1 / -1;
             width: 100%;
-
             padding: 16px 20px;
-
             border: none;
-
             border-radius: 14px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #6366f1,
-                    #7c3aed
-                );
-
-            color: white;
-
+            background: linear-gradient(135deg, #6366f1, #7c3aed);
+            color: #ffffff;
             font-size: 16px;
-
-            font-weight: 600;
-
+            font-weight: 700;
             cursor: pointer;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             gap: 10px;
-
-            margin-top: 6px;
-
-            box-shadow:
-                0 4px 14px
-                rgba(99, 102, 241, 0.30);
-
-            transition:
-                transform 0.15s ease,
-                box-shadow 0.25s ease;
-
+            margin-top: 4px;
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.28);
+            transition: 0.2s ease;
         }
-
 
         .submit-btn:hover {
-
-            transform:
-                translateY(-2px);
-
-            box-shadow:
-                0 8px 24px
-                rgba(99, 102, 241, 0.40);
-
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.34);
         }
 
-
-        .submit-btn i {
-
-            font-size: 18px;
-
-            transition:
-                transform 0.2s ease;
-
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: wait;
+            transform: none;
         }
 
-
-        .submit-btn:hover i {
-
-            transform:
-                translateX(4px);
-
+        .error {
+            margin-top: 20px;
+            padding: 15px 16px;
+            border-radius: 14px;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #b91c1c;
+            font-size: 13px;
+            line-height: 1.5;
         }
 
-
-        /* =========================================
-           RESULT BOX
-        ========================================= */
+        /* ======================================================
+           RESULT
+        ====================================================== */
 
         .result {
-
-            margin-top: 22px;
-
-            padding: 20px 18px;
-
-            border-radius: 16px;
-
-            text-align: center;
-
+            margin-top: 28px;
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid;
         }
-
-
-        /* =========================================
-           RESULT ICON
-        ========================================= */
-
-        .result-icon {
-
-            font-size: 28px;
-
-            margin-bottom: 8px;
-
-        }
-
-
-        /* =========================================
-           RESULT TITLE
-        ========================================= */
-
-        .result-title {
-
-            font-size: 18px;
-
-            font-weight: 700;
-
-            margin-bottom: 8px;
-
-        }
-
-
-        /* =========================================
-           SCORE
-        ========================================= */
-
-        .score {
-
-            font-size: 32px;
-
-            font-weight: 700;
-
-            line-height: 1.2;
-
-            margin: 8px 0;
-
-        }
-
-
-        /* =========================================
-           PERCENTAGE
-        ========================================= */
-
-        .score-percentage {
-
-            font-size: 13px;
-
-            font-weight: 600;
-
-            opacity: 0.75;
-
-            margin-bottom: 8px;
-
-        }
-
-
-        /* =========================================
-           MESSAGE
-        ========================================= */
-
-        .result-message {
-
-            font-size: 13px;
-
-            line-height: 1.5;
-
-            margin-top: 6px;
-
-        }
-
-
-        /* =========================================
-           GREAT MATCH
-        ========================================= */
 
         .result.great {
-
-            color: #15803d;
-
             background: #f0fdf4;
-
-            border:
-                1px solid #86efac;
-
+            border-color: #bbf7d0;
         }
-
-
-        .result.great
-        .result-icon {
-
-            color: #16a34a;
-
-        }
-
-
-        /* =========================================
-           MODERATE MATCH
-        ========================================= */
 
         .result.moderate {
-
-            color: #b45309;
-
             background: #fffbeb;
-
-            border:
-                1px solid #fcd34d;
-
+            border-color: #fde68a;
         }
-
-
-        .result.moderate
-        .result-icon {
-
-            color: #d97706;
-
-        }
-
-
-        /* =========================================
-           LOW MATCH
-        ========================================= */
 
         .result.low {
-
-            color: #dc2626;
-
             background: #fef2f2;
-
-            border:
-                1px solid #fca5a5;
-
+            border-color: #fecaca;
         }
 
-
-        .result.low
-        .result-icon {
-
-            color: #dc2626;
-
+        .result-top {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 25px;
         }
 
+        .score-ring {
+            width: 128px;
+            height: 128px;
+            min-width: 128px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+            border: 8px solid #ddd6fe;
+        }
 
-        /* =========================================
-           DISCLAIMER
-        ========================================= */
+        .great .score-ring {
+            border-color: #86efac;
+        }
+
+        .moderate .score-ring {
+            border-color: #fcd34d;
+        }
+
+        .low .score-ring {
+            border-color: #fca5a5;
+        }
+
+        .score-number {
+            font-size: 32px;
+            line-height: 1;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        .score-label {
+            margin-top: 5px;
+            font-size: 11px;
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        .result-title {
+            font-size: 23px;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 7px;
+        }
+
+        .result-message {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .score-20 {
+            margin-top: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #475569;
+        }
+
+        .section {
+            margin-top: 22px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title i {
+            color: #6366f1;
+        }
+
+        .breakdown {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 11px;
+        }
+
+        .breakdown-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 13px;
+            padding: 13px;
+        }
+
+        .breakdown-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 9px;
+        }
+
+        .breakdown-value {
+            color: #4f46e5;
+        }
+
+        .bar {
+            width: 100%;
+            height: 7px;
+            border-radius: 99px;
+            background: #e5e7eb;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .skills-box {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 15px;
+        }
+
+        .skills-box h3 {
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 11px;
+        }
+
+        .skills-box.matched h3 {
+            color: #15803d;
+        }
+
+        .skills-box.missing h3 {
+            color: #b45309;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .skill {
+            display: inline-flex;
+            padding: 6px 9px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .matched .skill {
+            color: #166534;
+            background: #dcfce7;
+        }
+
+        .missing .skill {
+            color: #92400e;
+            background: #fef3c7;
+        }
+
+        .empty {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .evidence {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .evidence span {
+            padding: 6px 9px;
+            border-radius: 8px;
+            background: #eef2ff;
+            color: #4338ca;
+            font-size: 11px;
+            font-weight: 700;
+        }
 
         .disclaimer {
-
-            margin-top: 12px;
-
+            margin-top: 18px;
             text-align: center;
-
-            font-size: 11px;
-
-            line-height: 1.5;
-
             color: #94a3b8;
-
+            font-size: 10px;
+            line-height: 1.5;
         }
 
-
-        /* =========================================
-           ANIMATION
-        ========================================= */
-
-        @keyframes fadeUp {
-
-            0% {
-
-                opacity: 0;
-
-                transform:
-                    translateY(18px)
-                    scale(0.98);
-
-            }
-
-            100% {
-
-                opacity: 1;
-
-                transform:
-                    translateY(0)
-                    scale(1);
-
-            }
-
-        }
-
-
-        /* =========================================
-           MOBILE
-        ========================================= */
-
-        @media (max-width: 500px) {
-
+        @media (max-width: 700px) {
             .container {
-
                 padding: 28px 20px;
-
                 border-radius: 20px;
-
             }
 
+            form,
+            .skills-grid,
+            .breakdown {
+                grid-template-columns: 1fr;
+            }
 
-            h1 {
+            .result-top {
+                flex-direction: column;
+                text-align: center;
+            }
 
+            .result-title {
                 font-size: 20px;
-
             }
-
-
-            .header-icon {
-
-                width: 48px;
-
-                height: 48px;
-
-                font-size: 22px;
-
-            }
-
-
-            .score {
-
-                font-size: 28px;
-
-            }
-
         }
-
-
     </style>
-
 </head>
-
 
 <body>
 
+<div class="container">
 
-    <div class="container">
-
-
-        <!-- ======================================
-             HEADER
-        ======================================= -->
-
-        <div class="header">
-
-            <div class="header-icon">
-
-                <i class="fas fa-file-alt"></i>
-
-            </div>
-
-
-            <h1>
-                ATS Resume Matcher
-            </h1>
-
-
-            <p class="subtitle">
-
-                Upload your resume &amp; job description
-                to check compatibility
-
-            </p>
-
+    <div class="header">
+        <div class="header-icon">
+            <i class="fas fa-file-circle-check"></i>
         </div>
 
-
-        <!-- ======================================
-             FORM
-        ======================================= -->
-
-        <form
-            method="POST"
-            enctype="multipart/form-data"
-        >
-
-
-            <!-- Resume -->
-
-            <div class="file-group">
-
-                <label for="resumeInput">
-
-                    <i class="fas fa-user"></i>
-
-                    Resume (PDF)
-
-                </label>
-
-
-                <div class="file-wrapper">
-
-                    <input
-                        type="file"
-                        id="resumeInput"
-                        name="resume_pdf"
-                        accept=".pdf"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <!-- Job Description -->
-
-            <div class="file-group">
-
-                <label for="jdInput">
-
-                    <i class="fas fa-briefcase"></i>
-
-                    Job Description (PDF)
-
-                </label>
-
-
-                <div class="file-wrapper">
-
-                    <input
-                        type="file"
-                        id="jdInput"
-                        name="jd_pdf"
-                        accept=".pdf"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <!-- Submit -->
-
-            <button
-                type="submit"
-                class="submit-btn"
-            >
-
-                <span>
-                    Check Match
-                </span>
-
-                <i class="fas fa-arrow-right"></i>
-
-            </button>
-
-
-        </form>
-
-
-        <!-- ======================================
-             RESULT
-        ======================================= -->
-
-        {% if score is not none %}
-
-        <div class="result {{ status }}">
-
-
-            <!-- Result icon -->
-
-            <div class="result-icon">
-
-                {% if status == "great" %}
-
-                    <i class="fas fa-circle-check"></i>
-
-                {% elif status == "moderate" %}
-
-                    <i class="fas fa-circle-exclamation"></i>
-
-                {% else %}
-
-                    <i class="fas fa-circle-xmark"></i>
-
-                {% endif %}
-
-            </div>
-
-
-            <!-- Result title -->
-
-            <div class="result-title">
-
-                {{ title }}
-
-            </div>
-
-
-            <!-- Score -->
-
-            <div class="score">
-
-                {{ score }} / 20
-
-            </div>
-
-
-            <!-- Percentage -->
-
-            <div class="score-percentage">
-
-                {{ percentage }}% Match
-
-            </div>
-
-
-            <!-- Message -->
-
-            <div class="result-message">
-
-                {{ message }}
-
-            </div>
-
-
-        </div>
-
-
-        <!-- Disclaimer -->
-
-        <p class="disclaimer">
-
-            This score represents textual similarity between
-            your resume and the job description and is intended
-            as a guidance metric, not a hiring guarantee.
-
+        <h1>ATS Resume Matcher</h1>
+
+        <p class="subtitle">
+            Compare your resume with a job description using
+            skills, AI-project relevance, education and text similarity.
         </p>
+    </div>
+
+
+    <form method="POST" enctype="multipart/form-data" id="matcherForm">
+
+        <div class="file-group">
+            <label for="resumeInput">
+                <i class="fas fa-user"></i>
+                Resume (PDF)
+            </label>
+
+            <div class="file-wrapper">
+                <input
+                    type="file"
+                    id="resumeInput"
+                    name="resume_pdf"
+                    accept=".pdf"
+                    required
+                >
+            </div>
+        </div>
+
+
+        <div class="file-group">
+            <label for="jdInput">
+                <i class="fas fa-briefcase"></i>
+                Job Description (PDF)
+            </label>
+
+            <div class="file-wrapper">
+                <input
+                    type="file"
+                    id="jdInput"
+                    name="jd_pdf"
+                    accept=".pdf"
+                    required
+                >
+            </div>
+        </div>
+
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+            <span>Analyze Match</span>
+            <i class="fas fa-arrow-right"></i>
+        </button>
+
+    </form>
+
+
+    {% if error %}
+    <div class="error">
+        <i class="fas fa-circle-exclamation"></i>
+        {{ error }}
+    </div>
+    {% endif %}
+
+
+    {% if result %}
+
+    <div class="result {{ result.status }}">
+
+        <div class="result-top">
+
+            <div class="score-ring">
+                <div class="score-number">{{ result.score }}</div>
+                <div class="score-label">OUT OF 100</div>
+            </div>
+
+            <div>
+                <div class="result-title">
+                    {% if result.status == "great" %}
+                        <i class="fas fa-circle-check"></i>
+                    {% elif result.status == "moderate" %}
+                        <i class="fas fa-circle-exclamation"></i>
+                    {% else %}
+                        <i class="fas fa-circle-xmark"></i>
+                    {% endif %}
+
+                    {{ result.title }}
+                </div>
+
+                <div class="result-message">
+                    {{ result.message }}
+                </div>
+
+                <div class="score-20">
+                    Equivalent score: {{ result.score_20 }} / 20
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- SCORE BREAKDOWN -->
+
+        <div class="section">
+
+            <div class="section-title">
+                <i class="fas fa-chart-pie"></i>
+                Score Breakdown
+            </div>
+
+            <div class="breakdown">
+
+                {% for item in result.breakdown %}
+                <div class="breakdown-card">
+
+                    <div class="breakdown-head">
+                        <span>{{ item.name }} · {{ item.weight }}</span>
+                        <span class="breakdown-value">
+                            {{ item.score }}%
+                        </span>
+                    </div>
+
+                    <div class="bar">
+                        <div
+                            class="bar-fill"
+                            style="width: {{ item.score }}%"
+                        ></div>
+                    </div>
+
+                </div>
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+
+        <!-- MATCHED / MISSING -->
+
+        <div class="section">
+
+            <div class="section-title">
+                <i class="fas fa-code"></i>
+                Skills Analysis
+            </div>
+
+            <div class="skills-grid">
+
+                <div class="skills-box matched">
+                    <h3>
+                        <i class="fas fa-check"></i>
+                        Matched Skills
+                    </h3>
+
+                    <div class="skill-list">
+
+                        {% if result.matched_skills %}
+                            {% for skill in result.matched_skills %}
+                                <span class="skill">{{ skill }}</span>
+                            {% endfor %}
+                        {% else %}
+                            <span class="empty">
+                                No configured skills were detected.
+                            </span>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+
+                <div class="skills-box missing">
+                    <h3>
+                        <i class="fas fa-lightbulb"></i>
+                        Missing / Recommended
+                    </h3>
+
+                    <div class="skill-list">
+
+                        {% if result.missing_skills %}
+                            {% for skill in result.missing_skills %}
+                                <span class="skill">{{ skill }}</span>
+                            {% endfor %}
+                        {% else %}
+                            <span class="empty">
+                                No major configured gaps detected.
+                            </span>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROJECT EVIDENCE -->
+
+        {% if result.project_evidence %}
+
+        <div class="section">
+
+            <div class="section-title">
+                <i class="fas fa-robot"></i>
+                AI Project Evidence
+            </div>
+
+            <div class="evidence">
+
+                {% for evidence in result.project_evidence %}
+                    <span>{{ evidence }}</span>
+                {% endfor %}
+
+            </div>
+
+        </div>
 
         {% endif %}
 
 
+        <p class="disclaimer">
+            This is a transparent local ATS guidance score, not a hiring guarantee.
+            The result combines skill coverage with project, education, experience
+            and lexical similarity signals.
+        </p>
+
     </div>
 
+    {% endif %}
+
+</div>
+
+
+<script>
+    const form = document.getElementById("matcherForm");
+    const submitBtn = document.getElementById("submitBtn");
+
+    form.addEventListener("submit", function () {
+        submitBtn.disabled = true;
+        submitBtn.querySelector("span").textContent = "Analyzing...";
+        submitBtn.querySelector("i").className = "fas fa-spinner fa-spin";
+    });
+
+
+    function updateFileName(input) {
+        if (!input.files.length) return;
+
+        const fileName = input.files[0].name;
+
+        // Keep the native input display intact. This small visual cue
+        // only updates the label text so the selected file is obvious.
+        const label = input.closest(".file-group").querySelector("label");
+
+        if (label) {
+            label.dataset.selected = fileName;
+        }
+    }
+
+    document
+        .getElementById("resumeInput")
+        .addEventListener("change", function () {
+            updateFileName(this);
+        });
+
+    document
+        .getElementById("jdInput")
+        .addEventListener("change", function () {
+            updateFileName(this);
+        });
+</script>
 
 </body>
-
 </html>
